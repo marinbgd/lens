@@ -1,0 +1,5 @@
+export const SORT_BY = 'sortBy'
+export const FILTER_BY = 'filterBy'
+export const ASC = 'asc'
+export const DESC = 'desc'
+export const NOT_AVAILABLE = 'N/A'
