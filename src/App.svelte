@@ -2,6 +2,8 @@
   import svelteLogo from './assets/svelte.svg'
   import AddLens from './components/AddLens.svelte'
   import LensList from './components/LensList.svelte'
+  import ExportDb from './components/ExportDb.svelte';
+  import ImportDb from './components/ImportDb.svelte';
 </script>
 
 <main>
@@ -14,6 +16,10 @@
 
   <AddLens />
   <LensList />
+
+  <ExportDb />
+  <ImportDb />
+
 </main>
 
 <style>
