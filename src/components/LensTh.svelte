@@ -1,8 +1,8 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
-	import { ASC, DESC, FILTER_BY, SORT_BY } from '../util/const.js';
+	import { createEventDispatcher } from 'svelte'
+	import { ASC, DESC, FILTER_BY, SORT_BY } from '../util/const.js'
 
-	const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher()
 
     export let name = ''
     export let prop = ''
@@ -11,11 +11,11 @@
     let searchFilter = ''
 
     function sortBy(prop) {
-	    dispatch(SORT_BY, prop);
+	    dispatch(SORT_BY, prop)
     }
 
 	function handleSearch(event) {
-		dispatch(FILTER_BY, {prop, search: event.target.value});
+		dispatch(FILTER_BY, {prop, search: event.target.value})
     }
 </script>
 

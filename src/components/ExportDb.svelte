@@ -1,22 +1,25 @@
 <script>
-	import { exportDB } from "dexie-export-import";
+	import { exportDB } from 'dexie-export-import'
 	import { db } from '../db.js'
-    import download from "downloadjs";
+    import download from 'downloadjs'
 
 	let error = ''
 
 	function progressCallback ({totalRows, completedRows}) {
-		console.log(`Progress: ${completedRows} of ${totalRows} rows completed`);
+		console.log(`Progress: ${completedRows} of ${totalRows} rows completed`)
 	}
 
 	async function handleExportClick() {
-		console.log('clicked');
+		const isConfirmed = confirm('Are you sure?')
+        if (!isConfirmed) {
+			return
+        }
 		try {
 			//const blob = await db.export({ prettyJson: true, progressCallback });
-            const blob = await exportDB(db, { prettyJson: true, progressCallback });
+            const blob = await exportDB(db, { prettyJson: true, progressCallback })
 			download(blob, "dexie-export.json", "application/json");
 		} catch (error) {
-			console.error(''+error);
+			console.error(''+error)
 		}
     }
 </script>

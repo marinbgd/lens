@@ -1,9 +1,9 @@
 <script>
 	import { liveQuery } from 'dexie'
 	import { db } from '../db.js'
-	import LensTh from './LensTh.svelte';
-	import { ASC, DESC, NOT_AVAILABLE } from '../util/const.js';
-	import { isNumeric } from '../util/util.js';
+	import LensTh from './LensTh.svelte'
+	import { ASC, DESC, NOT_AVAILABLE } from '../util/const.js'
+	import { isNumeric } from '../util/util.js'
 
 	let sort = {}
 
