@@ -4,6 +4,20 @@
   import LensList from './components/LensList.svelte'
   import ExportDb from './components/ExportDb.svelte';
   import ImportDb from './components/ImportDb.svelte';
+
+  let lensEditing = null
+
+  function handleClickedlens(lensEvent) {
+    if (lensEditing && lensEditing.id && lensEvent.detail && lensEvent.detail.id && lensEvent.detail.id === lensEditing.id) {
+      lensEditing = null
+    } else {
+      lensEditing = lensEvent.detail
+    }
+  }
+
+  function handleLensEdited() {
+    lensEditing = null
+  }
 </script>
 
 <main>
@@ -14,8 +28,10 @@
   </div>
   <h1>Lens DB</h1>
 
-  <AddLens />
-  <LensList />
+  {#key lensEditing?.id || 0}
+  <AddLens lens={lensEditing} on:lensEditedEvent={handleLensEdited} />
+  {/key}
+  <LensList on:clickedLensEvent={handleClickedlens} />
 
   <ExportDb />
   <ImportDb />

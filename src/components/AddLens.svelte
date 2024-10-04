@@ -1,10 +1,31 @@
 <script>
 	import { db } from '../db.js'
+	import { createEventDispatcher } from 'svelte';
+	import { LENS_EDITED } from '../util/const.js';
+	const defaultFocalLength = 0
+	const dispatch = createEventDispatcher()
 
-	export let defaultFocalLength = 0
+	export let lens = null
 
+	$: if (lens) {
+        name = lens.name
+        mount = lens.mount
+        comment = lens.comment
+        focalLength = lens.focalLength
+        noOfBlades = lens.noOfBlades
+        frontFilter = lens.frontFilter
+        closestFocusingDistance = lens.closestFocusingDistance
+
+		editedLensId = lens.id
+        lens = null
+        isEditMode = true
+	}
+
+	let isEditMode = false
 	let status = ''
+    let isInProgress = false
 
+    let editedLensId = null
 	let name = ''
 	let mount = ''
 	let comment = ''
@@ -21,6 +42,37 @@
 		noOfBlades = defaultFocalLength
 		frontFilter = defaultFocalLength
 		closestFocusingDistance = defaultFocalLength
+
+        isEditMode = false
+        lens = null
+        editedLensId = null
+    }
+
+	async function editLens() {
+		try {
+			isInProgress = true
+			await db.lenses.update(editedLensId, {
+				name: name,
+				focalLength: focalLength,
+				mount: mount,
+				noOfBlades: noOfBlades,
+				frontFilter: frontFilter,
+				closestFocusingDistance: closestFocusingDistance,
+				comment: comment,
+			})
+
+			status = `Lens ${name} successfully edited.`
+
+            setTimeout(() => {
+	            dispatch(LENS_EDITED);
+				isInProgress = false
+            }, 2000)
+
+			resetForm()
+		} catch (error) {
+			status = `Failed to edit ${name}: ${error}`
+            isInProgress = false
+		}
     }
 
 	async function addLens() {
@@ -29,6 +81,8 @@
 				status = 'Lens must have a name'
 				return
             }
+
+	        isInProgress = true
 
 			const id = await db.lenses.add({
 				name: name,
@@ -42,9 +96,12 @@
 
 			status = `Lens ${name} successfully added. Got id ${id}`
 
+            isInProgress = false
+
 			resetForm()
 		} catch (error) {
 			status = `Failed to add ${name}: ${error}`
+	        isInProgress = false
 		}
 	}
 </script>
@@ -97,7 +154,14 @@
             <textarea class="field__input" bind:value={comment} id="comment" rows="10" cols="30" />
         </div>
 
-        <button on:click={addLens}>Add Lens</button>
+
+        <button on:click={resetForm} disabled={isInProgress}>Reset form</button>
+        {#if !isEditMode}
+            <button on:click={addLens} disabled={isInProgress}>Add Lens</button>
+        {/if}
+        {#if isEditMode}
+            <button on:click={editLens} disabled={isInProgress}>Edit Lens</button>
+        {/if}
     </fieldset>
 </div>
 
