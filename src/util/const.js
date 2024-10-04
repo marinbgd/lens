@@ -5,3 +5,46 @@ export const LENS_EDITED = 'lensEditedEvent'
 export const ASC = 'asc'
 export const DESC = 'desc'
 export const NOT_AVAILABLE = 'N/A'
+
+export const MOUNT_MAP = {
+	m42: {
+		value: 'm42',
+		displayName: 'M42',
+	},
+	nikonF: {
+		value: 'nikonF',
+		displayName: 'Nikon F',
+	},
+	nikonZ: {
+		value: 'nikonZ',
+		displayName: 'Nikon Z',
+	},
+	adaptall2: {
+		value: 'adaptall2',
+		displayName: 'Tamron Adaptall 2',
+	},
+	konica: {
+		value: 'konica',
+		displayName: 'Konica',
+	},
+	minoltaMd: {
+		value: 'minoltaMd',
+		displayName: 'Minolta MD',
+	},
+	olympusOm: {
+		value: 'olympusOm',
+		displayName: 'Olympus OM',
+	},
+	exacta: {
+		value: 'exacta',
+		displayName: 'Exacta',
+	},
+	canonFl: {
+		value: 'canonFl',
+		displayName: 'Canon FL',
+	},
+	canonFd: {
+		value: 'canonFd',
+		displayName: 'Canon FD',
+	}
+}

@@ -1,7 +1,7 @@
 <script>
 	import { db } from '../db.js'
 	import { createEventDispatcher } from 'svelte';
-	import { LENS_EDITED } from '../util/const.js';
+	import { LENS_EDITED, MOUNT_MAP } from '../util/const.js';
 	const defaultFocalLength = 0
 	const dispatch = createEventDispatcher()
 
@@ -118,14 +118,9 @@
         <div class="field">
             <label class="field__name" for="mount">Mount:</label>
             <select class="field__input" bind:value={mount} id="mount">
-                <option value="M42">M42</option>
-                <option value="nikonF">Nikon F</option>
-                <option value="nikonZ">Nikon Z</option>
-                <option value="adaptall">Tamron Adaptall</option>
-                <option value="konica">Konica</option>
-                <option value="minoltaMd">Minolta MD</option>
-                <option value="olympusOm">Olympus OM</option>
-                <option value="exacta">Exacta</option>
+                {#each Object.values(MOUNT_MAP) as mount (mount.value)}
+                    <option value={mount.value}>{mount.displayName}</option>
+                {/each}
             </select>
         </div>
 
