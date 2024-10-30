@@ -138,7 +138,7 @@
             <th><LensTh name="Mount" prop="mount" sort={sort['mount']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
             <th><LensTh name="No of blades" prop="noOfBlades" sort={sort['noOfBlades']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
             <th><LensTh name="Front filter" prop="frontFilter" sort={sort['frontFilter']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
-            <th><LensTh name="Closest focusing distance" abbr="CFD" prop="closestFocusingDistance" sort={sort['closestFocusingDistance']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
+            <th title="Closest focusing distance"><LensTh name="Closest focusing distance" abbr="CFD" prop="closestFocusingDistance" sort={sort['closestFocusingDistance']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
             <th>Comment</th>
             <th>X</th>
         </tr>
