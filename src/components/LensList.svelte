@@ -132,13 +132,13 @@
         <thead>
         <tr>
             <th>No</th>
-            <LensTh name="Name" prop="name" sort={sort['name']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
-            <LensTh name="Focal length" prop="focalLength" sort={sort['focalLength']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
-            <LensTh name="Speed" prop="speed" sort={sort['speed']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
-            <LensTh name="Mount" prop="mount" sort={sort['mount']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
-            <LensTh name="No of blades" prop="noOfBlades" sort={sort['noOfBlades']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
-            <LensTh name="Front filter" prop="frontFilter" sort={sort['frontFilter']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
-            <LensTh name="Closest focusing distance" prop="closestFocusingDistance" sort={sort['closestFocusingDistance']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
+            <th><LensTh name="Name" prop="name" sort={sort['name']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
+            <th><LensTh name="Focal length" prop="focalLength" sort={sort['focalLength']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
+            <th><LensTh name="Speed" prop="speed" sort={sort['speed']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
+            <th><LensTh name="Mount" prop="mount" sort={sort['mount']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
+            <th><LensTh name="No of blades" prop="noOfBlades" sort={sort['noOfBlades']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
+            <th><LensTh name="Front filter" prop="frontFilter" sort={sort['frontFilter']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
+            <th><LensTh name="Closest focusing distance" abbr="CFD" prop="closestFocusingDistance" sort={sort['closestFocusingDistance']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} /></th>
             <th>Comment</th>
             <th>X</th>
         </tr>
@@ -181,12 +181,10 @@
         border: 1px solid black;
         background-color: #112241;
     }
-    tr {
-        cursor: pointer;
-    }
     td {
         width: auto;
         border: 1px solid black;
+        cursor: pointer;
     }
     td:nth-child(2),
     th:nth-child(2) {

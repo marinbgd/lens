@@ -7,6 +7,7 @@
     export let name = ''
     export let prop = ''
     export let sort = ''
+    export let abbr = ''
 
     let searchFilter = ''
 
@@ -19,16 +20,14 @@
     }
 </script>
 
-<th>
-    {name}
-    <button on:click={() => sortBy(prop)}>
-        S
-        {#if sort === ASC}<span class="sort-icon sort-icon__asc"></span>{/if}
-        {#if sort === DESC}<span class="sort-icon sort-icon__desc"></span>{/if}
-    </button>
+{abbr || name}
+<button on:click={() => sortBy(prop)}>
+    S
+    {#if sort === ASC}<span class="sort-icon sort-icon__asc"></span>{/if}
+    {#if sort === DESC}<span class="sort-icon sort-icon__desc"></span>{/if}
+</button>
 
-    <input type="search" bind:value={searchFilter} on:change={handleSearch} />
-</th>
+<input type="search" bind:value={searchFilter} on:change={handleSearch} />
 
 <style>
     button {

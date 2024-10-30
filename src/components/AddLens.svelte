@@ -66,9 +66,6 @@
 	async function editLens() {
 		try {
 			isInProgress = true
-            console.log(focalLength)
-            console.log(maxFocalLength)
-            console.log(minFocalLength)
 			await db.lenses.update(editedLensId, {
 				name: name,
 				focalLength: focalLength,
