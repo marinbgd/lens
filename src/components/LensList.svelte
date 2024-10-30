@@ -2,8 +2,8 @@
 	import { liveQuery } from 'dexie'
 	import { db } from '../db.js'
 	import LensTh from './LensTh.svelte'
-	import { ASC, CLICKED_LENS, DESC, NOT_AVAILABLE } from '../util/const.js';
-	import { isNumeric } from '../util/util.js'
+	import { ASC, CLICKED_LENS, DESC, MOUNT_MAP, NOT_AVAILABLE } from '../util/const.js';
+	import { filterByFullTextSearch, isNumeric } from '../util/util.js';
 	import { createEventDispatcher } from 'svelte'
 
 	const dispatch = createEventDispatcher()
@@ -39,7 +39,8 @@
 	                if (isNumeric(searchText)) {
 		                return db.lenses.where(prop).equals(+searchText).toArray()
 	                } else {
-		                return db.lenses.where(prop).startsWithIgnoreCase(searchText).toArray()
+		                //return db.lenses.where(prop).startsWithIgnoreCase(searchText).toArray()
+		                return db.lenses.filter(lens => filterByFullTextSearch(lens, prop, searchText)).toArray()
                     }
                 } else {
 	                return db.lenses.toArray()
@@ -59,6 +60,62 @@
 	function handleRowClick(event, lens) {
 		dispatch(CLICKED_LENS, lens)
     }
+
+	function mapMountValueToText(mountValue) {
+		const foundMount = MOUNT_MAP[mountValue]
+        if (foundMount) {
+			return foundMount.displayName
+        }
+		return mountValue
+    }
+
+	function renderZero(value) {
+		if (typeof value === 'undefined' || value === null) {
+			return NOT_AVAILABLE
+		}
+		return value
+    }
+
+	function renderLensSpeed(lens) {
+		if (lens.maxSpeed && lens.minSpeed) {
+			return `${lens.maxSpeed} - ${lens.minSpeed}`
+		}
+
+		if (lens.speed) {
+			return lens.speed
+        }
+
+		if (lens.maxSpeed) {
+			return lens.maxSpeed
+        }
+
+		if (lens.minSpeed) {
+			return lens.minSpeed
+		}
+
+		return NOT_AVAILABLE
+    }
+
+	function renderLensFocalLength(lens) {
+		if (lens.minFocalLength && lens.maxFocalLength) {
+			return `${lens.minFocalLength} - ${lens.maxFocalLength}`
+		}
+
+		if (lens.focalLength) {
+			return lens.focalLength
+		}
+
+		if (lens.minFocalLength) {
+			return lens.minFocalLength
+		}
+
+		if (lens.maxFocalLength) {
+			return lens.maxFocalLength
+		}
+
+		return NOT_AVAILABLE
+    }
+
 </script>
 {#if $lenses}
     <table>
@@ -67,6 +124,7 @@
             <th>No</th>
             <LensTh name="Name" prop="name" sort={sort['name']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
             <LensTh name="Focal length" prop="focalLength" sort={sort['focalLength']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
+            <LensTh name="Speed" prop="speed" sort={sort['speed']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
             <LensTh name="Mount" prop="mount" sort={sort['mount']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
             <LensTh name="No of blades" prop="noOfBlades" sort={sort['noOfBlades']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
             <LensTh name="Front filter" prop="frontFilter" sort={sort['frontFilter']} on:sortByEvent={handleSortBy} on:filterByEvent={handleFilterBy} />
@@ -79,11 +137,12 @@
             <tr on:click={(event) => handleRowClick(event, lens)}>
                 <td>{index + 1}</td>
                 <td>{lens.name}</td>
-                <td>{lens.focalLength || NOT_AVAILABLE}</td>
-                <td>{lens.mount || NOT_AVAILABLE}</td>
-                <td>{lens.noOfBlades || NOT_AVAILABLE}</td>
-                <td>{lens.frontFilter || NOT_AVAILABLE}</td>
-                <td>{lens.closestFocusingDistance || NOT_AVAILABLE}</td>
+                <td>{renderLensFocalLength(lens)}</td>
+                <td>{renderLensSpeed(lens)}</td>
+                <td>{mapMountValueToText(lens.mount) || NOT_AVAILABLE}</td>
+                <td>{renderZero(lens.noOfBlades)}</td>
+                <td>{renderZero(lens.frontFilter)}</td>
+                <td>{renderZero(lens.closestFocusingDistance)}</td>
                 <td>{lens.comment || NOT_AVAILABLE}</td>
                 <td>
                     <button on:click={() => removeLens(lens.id)}>X</button>

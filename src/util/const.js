@@ -35,6 +35,10 @@ export const MOUNT_MAP = {
 		value: 'olympusOm',
 		displayName: 'Olympus OM',
 	},
+	altix: {
+		value: 'altix',
+		displayName: 'Altix',
+	},
 	exacta: {
 		value: 'exacta',
 		displayName: 'Exacta',
@@ -46,5 +50,17 @@ export const MOUNT_MAP = {
 	canonFd: {
 		value: 'canonFd',
 		displayName: 'Canon FD',
+	},
+	p6: {
+		value: 'p6',
+		displayName: 'Pentacon Six (P6)',
+	},
+	rolleiQbm: {
+		value: 'rolleiQbm',
+		displayName: 'Rollei QBM',
+	},
+	projector: {
+		value: 'projector',
+		displayName: 'Projector',
 	}
 }

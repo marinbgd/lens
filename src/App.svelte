@@ -7,12 +7,17 @@
 
   let lensEditing = null
 
-  function handleClickedlens(lensEvent) {
+  function handleClickedLens(lensEvent) {
     if (lensEditing && lensEditing.id && lensEvent.detail && lensEvent.detail.id && lensEvent.detail.id === lensEditing.id) {
       lensEditing = null
     } else {
       lensEditing = lensEvent.detail
+      scrollToAddLens()
     }
+  }
+
+  function scrollToAddLens() {
+    window.scrollTo(0, 0)
   }
 
   function handleLensEdited() {
@@ -31,7 +36,7 @@
   {#key lensEditing?.id || 0}
   <AddLens lens={lensEditing} on:lensEditedEvent={handleLensEdited} />
   {/key}
-  <LensList on:clickedLensEvent={handleClickedlens} />
+  <LensList on:clickedLensEvent={handleClickedLens} />
 
   <ExportDb />
   <ImportDb />

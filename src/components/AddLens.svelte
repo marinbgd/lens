@@ -12,6 +12,11 @@
         mount = lens.mount
         comment = lens.comment
         focalLength = lens.focalLength
+		maxFocalLength = lens.maxFocalLength
+		minFocalLength = lens.minFocalLength
+        speed = lens.speed
+        maxSpeed = lens.maxSpeed
+        minSpeed = lens.minSpeed
         noOfBlades = lens.noOfBlades
         frontFilter = lens.frontFilter
         closestFocusingDistance = lens.closestFocusingDistance
@@ -29,7 +34,12 @@
 	let name = ''
 	let mount = ''
 	let comment = ''
+	let speed = defaultFocalLength
+	let maxSpeed = defaultFocalLength
+	let minSpeed = defaultFocalLength
 	let focalLength = defaultFocalLength
+	let maxFocalLength = defaultFocalLength
+	let minFocalLength = defaultFocalLength
 	let noOfBlades = defaultFocalLength
 	let frontFilter = defaultFocalLength
 	let closestFocusingDistance = defaultFocalLength
@@ -38,7 +48,12 @@
 		name = ''
 		mount = ''
 		comment = ''
+		speed = defaultFocalLength
+		maxSpeed = defaultFocalLength
+		minSpeed = defaultFocalLength
 		focalLength = defaultFocalLength
+		maxFocalLength = defaultFocalLength
+		minFocalLength = defaultFocalLength
 		noOfBlades = defaultFocalLength
 		frontFilter = defaultFocalLength
 		closestFocusingDistance = defaultFocalLength
@@ -51,9 +66,17 @@
 	async function editLens() {
 		try {
 			isInProgress = true
+            console.log(focalLength)
+            console.log(maxFocalLength)
+            console.log(minFocalLength)
 			await db.lenses.update(editedLensId, {
 				name: name,
 				focalLength: focalLength,
+				maxFocalLength: maxFocalLength,
+				minFocalLength: minFocalLength,
+				speed: speed,
+				maxSpeed: maxSpeed,
+				minSpeed: minSpeed,
 				mount: mount,
 				noOfBlades: noOfBlades,
 				frontFilter: frontFilter,
@@ -87,6 +110,11 @@
 			const id = await db.lenses.add({
 				name: name,
 				focalLength: focalLength,
+				maxFocalLength: maxFocalLength,
+				minFocalLength: minFocalLength,
+				speed: speed,
+				maxSpeed: maxSpeed,
+				minSpeed: minSpeed,
                 mount: mount,
                 noOfBlades: noOfBlades,
                 frontFilter: frontFilter,
@@ -127,6 +155,31 @@
         <div class="field">
             <label class="field__name" for="focalLength">Focal length:</label>
             <input class="field__input" type="number" bind:value={focalLength} id="focalLength" />
+        </div>
+
+        <div class="field">
+            <label class="field__name" for="minFocalLength">Min Focal length:</label>
+            <input class="field__input" type="number" bind:value={minFocalLength} id="minFocalLength" />
+        </div>
+
+        <div class="field">
+            <label class="field__name" for="maxFocalLength">Max Focal length:</label>
+            <input class="field__input" type="number" bind:value={maxFocalLength} id="maxFocalLength" />
+        </div>
+
+        <div class="field">
+            <label class="field__name" for="speed">Speed:</label>
+            <input class="field__input" type="number" bind:value={speed} id="speed" />
+        </div>
+
+        <div class="field">
+            <label class="field__name" for="maxSpeed">Max Speed:</label>
+            <input class="field__input" type="number" bind:value={maxSpeed} id="maxSpeed" />
+        </div>
+
+        <div class="field">
+            <label class="field__name" for="minSpeed">Min Speed:</label>
+            <input class="field__input" type="number" bind:value={minSpeed} id="minSpeed" />
         </div>
 
         <div class="field">
