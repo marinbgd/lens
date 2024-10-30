@@ -3,7 +3,7 @@
 	import { db } from '../db.js'
 	import LensTh from './LensTh.svelte'
 	import { ASC, CLICKED_LENS, DESC, MOUNT_MAP, NOT_AVAILABLE } from '../util/const.js';
-	import { filterByFullTextSearch, isNumeric } from '../util/util.js';
+	import { filterByFocalLength, filterByFullTextSearch, filterBySpeed, isNumeric } from '../util/util.js';
 	import { createEventDispatcher } from 'svelte'
 
 	const dispatch = createEventDispatcher()
@@ -38,6 +38,14 @@
 		lenses = liveQuery(
 			() => {
                 if (searchText) {
+	                if(prop === 'speed') {
+		                return db.lenses.filter(lens => filterBySpeed(lens, searchText)).toArray()
+	                }
+
+	                if(prop === 'focalLength') {
+		                return db.lenses.filter(lens => filterByFocalLength(lens, searchText)).toArray()
+	                }
+
 	                if (isNumeric(searchText)) {
 		                return db.lenses.where(prop).equals(+searchText).toArray()
 	                } else {
