@@ -171,6 +171,9 @@
         border: 1px solid black;
         background-color: #112241;
     }
+    tr {
+        cursor: pointer;
+    }
     td {
         width: auto;
         border: 1px solid black;
