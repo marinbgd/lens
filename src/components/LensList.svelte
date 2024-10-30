@@ -133,6 +133,7 @@
             <th>X</th>
         </tr>
         </thead>
+        <tbody>
         {#each $lenses as lens, index (lens.id)}
             <tr on:click={(event) => handleRowClick(event, lens)}>
                 <td>{index + 1}</td>
@@ -149,6 +150,7 @@
                 </td>
             </tr>
         {/each}
+        </tbody>
     </table>
 {:else}
     <p>No lenses in the DB</p>
