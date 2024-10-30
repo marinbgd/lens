@@ -19,15 +19,17 @@
     }
 
 	async function sortBy(key) {
+        const sortValue = sort[key] === ASC ? DESC : ASC
+		sort = {
+			[key]: sortValue
+		};
+
         lenses = liveQuery(
 	        () => {
-                if (sort[key] && sort[key] === ASC) {
-					sort[key] = DESC
-	                return db.lenses.orderBy(key).reverse().toArray()
-                } else {
-	                sort[key] = ASC;
-	                return db.lenses.orderBy(key).toArray()
+				if (sort[key] === ASC) {
+					return db.lenses.orderBy(key).reverse().toArray()
                 }
+		        return db.lenses.orderBy(key).toArray()
 			}
         );
     }
