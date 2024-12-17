@@ -11,6 +11,10 @@ export const MOUNT_MAP = {
 		value: 'm42',
 		displayName: 'M42',
 	},
+	m39: {
+		value: 'm39',
+		displayName: 'M39',
+	},
 	nikonF: {
 		value: 'nikonF',
 		displayName: 'Nikon F',
@@ -30,6 +34,10 @@ export const MOUNT_MAP = {
 	minoltaMd: {
 		value: 'minoltaMd',
 		displayName: 'Minolta MD',
+	},
+	pkMount: {
+		value: 'pkMount',
+		displayName: 'Pentax K-mount',
 	},
 	olympusOm: {
 		value: 'olympusOm',
@@ -58,6 +66,10 @@ export const MOUNT_MAP = {
 	rolleiQbm: {
 		value: 'rolleiQbm',
 		displayName: 'Rollei QBM',
+	},
+	dkl: {
+		value: 'dkl',
+		displayName: 'DKL',
 	},
 	projector: {
 		value: 'projector',
