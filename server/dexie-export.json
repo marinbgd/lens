@@ -8,7 +8,7 @@
       {
         "name": "lenses",
         "schema": "++id,name,focalLength,maxFocalLength,minFocalLength,speed,minSpeed,maxSpeed,mount,noOfBlades,frontFilter,closestFocusingDistance,weight,comment",
-        "rowCount": 80
+        "rowCount": 84
       }
     ],
     "data": [{
@@ -1110,6 +1110,66 @@
           "closestFocusingDistance": 0,
           "comment": "- (Prontor 500 SLK-y) - unknown mount\n- slomljen sa nekog aparata, treba videti kako da se montira\n- negde sam video da moze da se preradi na m39\n",
           "id": 80
+        },
+        {
+          "name": "Jupiter 9",
+          "focalLength": 85,
+          "maxFocalLength": 0,
+          "minFocalLength": 0,
+          "speed": 2,
+          "maxSpeed": 0,
+          "minSpeed": 0,
+          "mount": "m42",
+          "noOfBlades": 15,
+          "frontFilter": 49,
+          "closestFocusingDistance": 0.8,
+          "comment": "Ima zonericu.\nIma malo ulja na blendi.",
+          "id": 81
+        },
+        {
+          "name": "Fujinon 55mm f/1.8",
+          "focalLength": 55,
+          "maxFocalLength": 0,
+          "minFocalLength": 0,
+          "speed": 1.8,
+          "maxSpeed": 0,
+          "minSpeed": 0,
+          "mount": "m42",
+          "noOfBlades": 0,
+          "frontFilter": 49,
+          "closestFocusingDistance": 0,
+          "comment": "",
+          "id": 82
+        },
+        {
+          "name": "Super-Takumar 50mm f/1.4",
+          "focalLength": 50,
+          "maxFocalLength": 0,
+          "minFocalLength": 0,
+          "speed": 1.4,
+          "maxSpeed": 0,
+          "minSpeed": 0,
+          "mount": "m42",
+          "noOfBlades": 0,
+          "frontFilter": 49,
+          "closestFocusingDistance": 0,
+          "comment": "- Radioactive thorium glass\n- late 7 element version\n",
+          "id": 83
+        },
+        {
+          "name": "Samyang 14mm F2.8 ED AS IF UMC",
+          "focalLength": 14,
+          "maxFocalLength": 0,
+          "minFocalLength": 0,
+          "speed": 2.8,
+          "maxSpeed": 0,
+          "minSpeed": 0,
+          "mount": "nikonF",
+          "noOfBlades": 0,
+          "frontFilter": 0,
+          "closestFocusingDistance": 0.28,
+          "comment": "",
+          "id": 84
         }
       ]
     }]
